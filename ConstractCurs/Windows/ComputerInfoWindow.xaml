@@ -1,0 +1,166 @@
+﻿<Window x:Class="ConstractCurs.Windows.ComputerInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ConstractCurs.View"
+        Height="450" 
+        Width="800"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border x:Name="MainBorder" CornerRadius="20" BorderThickness="2" BorderBrush="DarkGray" Background="{StaticResource BackgroundColor}">
+    <Grid Background="{Binding Path=Background}" Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Grid.Row="0"
+                Background="{StaticResource DarkRedColor}"
+                Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+                Command="{Binding ToReservationPageCommand}">
+            <materialDesign:PackIcon Kind="ArrowULeftBottomBold" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+        </Button>
+        <TextBlock Text="Страница компьютера" FontWeight="Bold" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="{StaticResource WhiteColor}" FontSize="40"/>
+        <TextBlock Grid.ColumnSpan="2" 
+                   Margin="0 5"
+                   Grid.Row="1" 
+                   FontSize="40" 
+                   Foreground="{StaticResource WhiteColor}"
+                   FontWeight="Bold"
+                   Text="{Binding Path=placeModel.Name}"/>
+
+
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="Цена: " FontSize="30" Foreground="{StaticResource WhiteColor}"/>
+            <TextBlock DataContext="{Binding placeModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="30"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding PricePerHour}"/>
+
+            <TextBlock
+                       Margin="10,0,0,0"
+                       FontSize="30"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text=" Место в зале "/>
+            <TextBlock DataContext="{Binding placeModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="30"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Id}"/>
+        </StackPanel>
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="3">
+            <TextBlock Text="Процессор: " FontSize="15" Foreground="{StaticResource WhiteColor}"/>
+            <TextBlock DataContext="{Binding processorModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Name}"/>
+        </StackPanel>
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="4">
+            <TextBlock Text="Видеокарта: " FontSize="15" Foreground="{StaticResource WhiteColor}"/>
+            <TextBlock DataContext="{Binding videoCardModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Name}"/>
+        </StackPanel>
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="5">
+            <TextBlock Text="Монитор: " FontSize="15" Foreground="{StaticResource WhiteColor}"/>
+            <TextBlock DataContext="{Binding monitorModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Name}"/>
+        </StackPanel>
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="6">
+            <TextBlock Text="Мышка: " FontSize="15" Foreground="{StaticResource WhiteColor}"/>
+            <TextBlock DataContext="{Binding mouseModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Name}"/>
+        </StackPanel>
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="7">
+            <TextBlock Text="Оперативная память: " FontSize="15" Foreground="{StaticResource WhiteColor}"/>
+            <TextBlock DataContext="{Binding ramModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Name}"/>
+        </StackPanel>
+        <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="8">
+            <TextBlock Text="Наушники: " FontSize="15" Foreground="{StaticResource WhiteColor}"/>
+            <TextBlock DataContext="{Binding headphonesModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Name}"/>
+        </StackPanel>
+            <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                <TextBlock DataContext="{Binding processorModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Specifications}"/>
+        </StackPanel>
+            <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+                <TextBlock DataContext="{Binding videoCardModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Specifications}"/>
+        </StackPanel>
+            <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+            <TextBlock DataContext="{Binding monitorModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Specifications}"/>
+        </StackPanel>
+            <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+            <TextBlock DataContext="{Binding mouseModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Specifications}"/>
+        </StackPanel>
+            <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
+            <TextBlock DataContext="{Binding ramModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Specifications}"/>
+        </StackPanel>
+            <StackPanel Margin="0 5" Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
+            <TextBlock DataContext="{Binding headphonesModel}" 
+                       Margin="10,0,0,0"
+                       FontSize="15"
+                       Foreground="{StaticResource WhiteColor}"
+                       Text="{Binding Specifications}"/>
+            </StackPanel>
+
+
+            
+    </Grid>
+    </Border>
+</Window>

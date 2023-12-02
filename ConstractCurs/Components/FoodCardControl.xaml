@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="ConstractCurs.Components.FoodCardControl"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConstractCurs.Components" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:views="clr-namespace:ConstractCurs.View"
+             xmlns:vm="clr-namespace:ConstractCurs.ViewModel"
+      mc:Ignorable="d">
+    <UserControl.Resources>
+        <views:Converter x:Key="Converter"></views:Converter>
+    </UserControl.Resources>
+    <Border CornerRadius="5" Background="{StaticResource DarkGrayColor}" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="6">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="Id" Text="{Binding Id}" Visibility="Hidden"/>
+            <TextBlock x:Name="Info" Text="{Binding FoodInfo}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <TextBlock x:Name="Price" Text="{Binding Price}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Button Name="toProductButton" Grid.Column="5" Cursor="Hand" Width="40" Height="40"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}, Path=DataContext.ToConfirmFoodPage}"
+                    Background="{StaticResource DarkRedColor}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource Converter}">
+                        <Binding Path="Text" ElementName="Id"/>
+                        <Binding Path="SelectedDate" ElementName="OrderStart"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="BasketFill" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

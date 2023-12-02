@@ -1,0 +1,95 @@
+﻿<Page x:Class="ConstractCurs.View.PersonalAccPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:ConstractCurs.View"
+      xmlns:components="clr-namespace:ConstractCurs.Components"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="850"
+      Title="ReportPage">
+
+    <Page.Resources>
+        <local:BoolToVisibility x:Key="BoolToVisibilityConverter"></local:BoolToVisibility>
+        <local:NegateBoolToVisibility x:Key="NegateBoolToVisibilityConverter"></local:NegateBoolToVisibility>
+        <local:Converter x:Key="Converter"></local:Converter>
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="{Binding Path=Background}" Margin="30">
+
+            <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="190"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Личный кабинет" Grid.ColumnSpan="2" FontSize="45" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource WhiteColor}" Grid.Column="0" />
+        <TextBlock Text="Заказы еды:"  FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{StaticResource WhiteColor}" Grid.Column="1" Grid.Row="1" />
+            <Button Name="AddButton" Grid.Column="1" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    Background="Red"
+                    Command="{Binding LeftFromAcc}">
+                <materialDesign:PackIcon Kind="AccountArrowLeft" Width="20" Height="20" Foreground="White"></materialDesign:PackIcon>
+                <Button.CommandParameter>
+                    <Binding Path="Text" ElementName="Id"/>
+                </Button.CommandParameter>
+            </Button>
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="Имя"/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="{Binding FirstName}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="Логин: "/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="{Binding UserName}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="Баланс: "/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="{Binding Balance}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="Бонусы: "/>
+                <TextBlock FontSize="20" Margin="10" Foreground="{StaticResource WhiteColor}" Text="{Binding Bonuses}"/>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Text="Бронирования: " Margin="10" Grid.Column="0" Grid.Row="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="{StaticResource WhiteColor}"/>
+            <Border CornerRadius="10" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6" Background="#b1a7a6" Margin="10">
+            <!--<ScrollViewer Grid.Column="0" Grid.ColumnSpan="4" Margin="10"  VerticalScrollBarVisibility="Auto" Grid.Row="6">-->
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                    <ItemsControl x:Name="items" ItemsSource="{Binding Reservations}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <components:AccountReservationControl Background="Transparent"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            <!--</ScrollViewer>-->
+
+        </Border>
+            <Border CornerRadius="10" Grid.Column="1" Grid.Row="1" Background="#b1a7a6" Margin="10,30,10,10" Grid.RowSpan="2" Height="180">
+            <ScrollViewer Margin="10"  VerticalScrollBarVisibility="Auto" >
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                    <ItemsControl x:Name="itemsFood" ItemsSource="{Binding FoodOrders}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <components:AccountFoodControl Background="Transparent"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        
+    </Grid>
+    </ScrollViewer>
+</Page>
